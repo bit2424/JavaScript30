@@ -68,19 +68,21 @@
     if(!audio)return;
     audio.currentTime = 0;
     audio.play(audio);
-    console.log(key);
-    key.classList.add('playing');
+    //console.log(key);
+    key.classList.toggle('playing');
   }
   
 
   function removeTransition(e){
+    console.log(e.propertyName);
     if(e.propertyName != 'transform')return;
-    console.log(e);
     this.classList.remove('playing');
+    console.log("After removing playing "+this);
   }
   
   const all_keys = document.querySelectorAll('.key');
   all_keys.forEach(key => key.addEventListener(`transitionend`,removeTransition));
+  //all_keys.forEach(key => key.addEventListener(`transitioncancel`,removeTransition));
   window.addEventListener('keydown',playSound);
 
 </script>
